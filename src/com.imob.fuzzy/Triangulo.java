@@ -1,8 +1,22 @@
-public class Triangle {
+/**
+ * File: Triangulo.java
+ *
+ * Created by
+ *      Jonathan Arantes
+ *      Rubia Marques
+ *      Ana Paula
+ * v0.1
+ */
+
+package com.imob.fuzzy;
+
+public class Triangulo extends Graph {
 
     private float a,b,c;
 
-    public Triangle(float a, float b, float c) {
+    public Triangulo(double ini, double fim, float a, float b, float c) {
+        this.SCOPE_START = ini;
+        this.SCOPE_END = fim;
         this.a = a;
         this.b = b;
         this.c = c;
@@ -15,7 +29,7 @@ public class Triangle {
             return (x - this.a) / (this.b - this.a);
         } else if (this.b <= x || x < this.c) {
             return (this.c - x) / (this.c - this.b);
-        } else if (this.d <= x) {
+        } else if (this.c <= x) {
             return 0;
         }
         return 0;

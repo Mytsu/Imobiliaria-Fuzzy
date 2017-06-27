@@ -1,9 +1,23 @@
-public class Trapezio {
+/**
+ * File: Trapezio.java
+ *
+ * Created by
+ *      Jonathan Arantes
+ *      Rubia Marques
+ *      Ana Paula
+ * v0.1
+ */
+
+package com.imob.fuzzy;
+
+public class Trapezio extends Graph {
     
     private float a, b, c, d;
 
 
-    public Trapezio(float a, float b, float c, float d) {
+    public Trapezio(double ini, double fim, float a, float b, float c, float d) {
+        this.SCOPE_START = ini;
+        this.SCOPE_END = fim;
         this.a = a;
         this.b = b;
         this.c = c;
