@@ -12,8 +12,25 @@ package com.imob.fuzzy;
 
 public abstract class Graph {
 
-    double SCOPE_START = 0;
-    double SCOPE_END = 0;
+    private double SCOPE_START = 0;
+
+    private double SCOPE_END = 0;
+
+    public double getSCOPE_START() {
+        return SCOPE_START;
+    }
+
+    public void setSCOPE_START(double SCOPE_START) {
+        this.SCOPE_START = SCOPE_START;
+    }
+
+    public double getSCOPE_END() {
+        return SCOPE_END;
+    }
+
+    public void setSCOPE_END(double SCOPE_END) {
+        this.SCOPE_END = SCOPE_END;
+    }
 
     public abstract float fuzzyfy(float x);
 
