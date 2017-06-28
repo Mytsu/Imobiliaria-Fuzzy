@@ -38,9 +38,9 @@ public class Imobiliaria {
     private Trapezio areaExternaGrande = new Trapezio(0, 700, 550, 700, Fuzzy._INFINITY, Fuzzy._INFINITY);
 
     // Area Interna
-    private Trapezio areaTotalPequena = new Trapezio(50, 450, 0, 0, 120, 150);
-    private Trapezio areaTotalMediana = new Trapezio(50, 450, 120, 150, 300, 350);
-    private Trapezio areaTotalGrande = new Trapezio(50, 450, 300, 400, Fuzzy._INFINITY, Fuzzy._INFINITY);
+    private Trapezio areaInternaPequena = new Trapezio(50, 450, 0, 0, 120, 150);
+    private Trapezio areaInternaMediana = new Trapezio(50, 450, 120, 150, 300, 350);
+    private Trapezio areaInternaGrande = new Trapezio(50, 450, 300, 400, Fuzzy._INFINITY, Fuzzy._INFINITY);
 
     // Valor
     private Trapezio valorBarata = new Trapezio(120, 750, 120, 120, 250, 350);
@@ -51,6 +51,11 @@ public class Imobiliaria {
     private Linha vagaPouca = new Linha(0, 4, 0, 2);
     private Linha vagaMediana = new Linha(0, 4, 1, (float)2.5);
     private Linha vagaMuita = new Linha(0, 4, 2, 4);
+
+    // Resposta
+    private Trapezio respRuim = new Trapezio(0, 10, - Fuzzy._INFINITY, - Fuzzy._INFINITY, (float)2.5, 3);
+    private Trapezio respMedia = new Trapezio(0, 10, (float)2.5, 3, (float)5.25, 6);
+    private Trapezio respBoa = new Trapezio(0, 10, (float)5.25, 6, Fuzzy._INFINITY, Fuzzy._INFINITY);
 
     private ArrayList<Casa> vetorCasas = new ArrayList<Casa>();
 
@@ -100,208 +105,187 @@ public class Imobiliaria {
 
     }
 
+    public float doFuzzy(Casa casa) {
+        return centroid(regras(casa.getValor(),(float)casa.getVagas(),casa.getTamConstrucao(),casa.getAreaLivre(),(float)casa.getLocalidade()));
+    }
+
     public void mostraCasa() {
         for (Iterator iterator = vetorCasas.iterator(); iterator.hasNext(); ) {
             Casa casa = (Casa) iterator.next();
-            System.out.println(casa.toString());
+            System.out.println(casa.toString() + "\tQualidade (%): " + doFuzzy(casa));
         }
 
     }
 
-    public ArrayList<Float> regras(Float valor, Float vagas, Float areaLivre, Float areaInterna, Float localidade) {
+    public ArrayList<Float> regras(Float valor, Float vagas, Float areaInterna, Float areaExterna, Float localidade) {
         ArrayList<Float> qualidade = new ArrayList<>();
 
         // Regras (De acordo com Especialista)
 
         ArrayList<Float> valores = new ArrayList<Float>();
 
-        // IF valor == Barato AND vagas == Pouca AND areaExterna == Pequena AND localidade == Ruim THEN qualidade = Ruim
-            valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_RUIM, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Barato AND vagas == Mediana AND areaExterna == Pequena AND localidade == Ruim THEN qualidade = Ruim
-            valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_RUIM, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Barato AND vagas == Mediana AND areaExterna == Mediana AND localidade == Ruim THEN qualidade = Mediana
-            valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Barato AND vagas == Mediana AND areaExterna == Mediana AND localidade == Media THEN qualidade = Mediana
-            valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Mediana AND vagas == Pequena AND areaExterna == Pequena AND localidade == Ruim THEN qualidade = Ruim
-            valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_RUIM, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Caro AND vagas == Pequena AND areaExterna == Pequena AND localidade == Ruim THEN qualidade = Ruim
-            valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_RUIM, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Mediana AND vagas == Mediana AND areaExterna == Pequena AND localidade == Mediana THEN qualidade = Mediana
-            valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Mediana AND vagas == Pequena AND areaExterna == Mediana AND localidade == Mediana THEN qualidade = Mediana
-            valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Caro AND vagas == Mediana AND areaExterna == Grande AND localidade == Ruim THEN qualidade = Boa
-            valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_BOA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Caro AND vagas == Grande AND areaExterna == Grande AND localidade == Ruim THEN qualidade = Boa
-            valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_BOA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Caro AND vagas == Media AND areaExterna == Grande AND localidade == Ruim THEN qualidade = Boa
-            valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_BOA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Caro AND vagas == Media AND areaExterna == Media AND localidade == Ruim THEN qualidade = Boa
-            valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_BOA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Caro AND vagas == Grande AND areaExterna == Grande AND localidade == Media THEN qualidade = Boa
-            valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_BOA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Caro AND vagas == Grande AND areaExterna == Grande AND localidade == Ruim THEN qualidade = Boa
-            valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_BOA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Media AND vagas == Grande AND areaExterna == Grande AND localidade == Boa THEN qualidade = Boa
-            valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_BOA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Media AND vagas == Grande AND areaExterna == Grande AND localidade == Media THEN qualidade = Boa
-            valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_BOA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Media AND vagas == Grande AND areaExterna == Grande AND localidade == Ruim THEN qualidade = Media
-            valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
-            valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
-            valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
-            valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min( valores ));
-
-        valores.clear();
-
-        // IF valor == Media AND (vagas == Pequena || Media)  AND areaExterna == Media AND localidade == Boa THEN qualidade = Media
-        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
-        if (fuzzy.trunc(vagaPouca.fuzzyfy(vagas)) < fuzzy.trunc(vagaMediana.fuzzyfy(vagas))) {
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-        } else {
-            valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
-        }
-        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
         valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min( valores ));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
 
         valores.clear();
 
-        // IF valor == Media AND (vagas == Pequena || Media)  AND areaExterna == Pequena AND localidade == Ruim THEN qualidade = Media
-        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
-        if (fuzzy.trunc(vagaPouca.fuzzyfy(vagas)) < fuzzy.trunc(vagaMediana.fuzzyfy(vagas))) {
-            valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
-        } else {
-            valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
-        }
-        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
         valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
-        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min( valores ));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
 
         return qualidade;
     }
 
     public float centroid(ArrayList<Float> l) {
-        float mult = 0, soma = 0, aux;
+        float mult = 0, soma = 0, aux, maior;
         ArrayList<Float> valores;
         // valor de pertinencia deve ser menor ou igual que o valor definido na saida das regras
         for (int i = 0; i < 100; i++) {
-
+            maior = 0;
+            aux = -1;
+            if(respRuim.fuzzyfy(i) <= l.get(_QUALIDADE_RUIM)) {
+                aux = respRuim.fuzzyfy(i);
+            }
+            maior = fuzzy.max(maior, aux);
+            if(respMedia.fuzzyfy(i) <= l.get(_QUALIDADE_MEDIA)) {
+                aux = respMedia.fuzzyfy(i);
+            }
+            maior = fuzzy.max(maior,aux);
+            if(respBoa.fuzzyfy(i) <= l.get(_QUALIDADE_BOA)) {
+                aux = respBoa.fuzzyfy(i);
+            }
+            maior = fuzzy.max(maior,aux);
+            mult += (maior * i);
+            soma += maior;
         }
+
+        if(soma == 0)
+            return 0;
+
         return mult / soma;
     }
 }

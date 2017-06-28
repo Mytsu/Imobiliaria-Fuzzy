@@ -18,7 +18,7 @@ public class Principal {
 		
 		Imobiliaria teste=new Imobiliaria();
 		
-		teste.leituraArquivo("IA_trabalho.txt");
+		teste.leituraArquivo("D:\\Projetos\\Java\\Trabalho-IA-Especialista-Imoveis-Fuzzy\\src\\IA_trabalho.txt");
 		
 		teste.mostraCasa();
 		

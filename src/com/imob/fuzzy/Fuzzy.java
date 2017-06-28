@@ -10,6 +10,8 @@
 
 package com.imob.fuzzy;
 
+import com.imob.control.Casa;
+
 import java.util.ArrayList;
 
 public class Fuzzy {
