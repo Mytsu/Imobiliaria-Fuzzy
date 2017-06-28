@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Trabalho-IA-Especialista-Imoveis-Fuzzy:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Trabalho_IA_Especialista_Imoveis_Fuzzy_jar</output-path>
+    <root id="archive" name="Trabalho-IA-Especialista-Imoveis-Fuzzy.jar">
+      <element id="module-output" name="Trabalho-IA-Especialista-Imoveis-Fuzzy" />
+    </root>
+  </artifact>
+</component>
