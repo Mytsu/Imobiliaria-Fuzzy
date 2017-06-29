@@ -123,7 +123,8 @@ public class Imobiliaria {
         // Regras (De acordo com Especialista)
 
         ArrayList<Float> valores = new ArrayList<Float>();
-
+        // se valor Barato e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
@@ -132,7 +133,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Barato e vagas garagem Pouca e área construída Mediana e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
@@ -141,7 +143,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Barato e vagas garagem Pouca e área construída Pequena e área extra Mediana e localidade Ruim
+        // então Qualidade Ruim
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
@@ -150,7 +153,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Barato e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Mediana
+        // então Qualidade Ruim
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
@@ -159,7 +163,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Barato e vagas garagem Mediana e área construída Pequena e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
@@ -168,8 +173,19 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
 
         valores.clear();
+        // se valor Barato e vagas garagem Mediana e área construída Mediana e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
 
-        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.clear();
+        // se valor Barato e vagas garagem Mediana e área construída Mediana e área extra Mediana e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
         valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
@@ -177,7 +193,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Barato e vagas garagem Mediana e área construída Mediana e área extra Mediana e localidade Mediana
+        // então Qualidade Mediana
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
@@ -186,7 +203,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Barato e vagas garagem Pouca e área construída Grande e área extra Pequena e localidade Ruim
+        // então Qualidade Mediana
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
@@ -195,7 +213,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Barato e vagas garagem Pouca e área construída Pequena e área extra Grande e localidade Ruim
+        // então Qualidade Mediana
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
@@ -204,7 +223,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Barato e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Boa
+        // então Qualidade Mediana
         valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
@@ -213,7 +233,168 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
 
         valores.clear();
+        // se valor Barato e vagas garagem Mediana e área construída Grande e área extra Pequena e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
 
+        valores.clear();
+        // se valor Barato e vagas garagem Mediana e área construída Grande e área extra Grande e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Barato e vagas garagem Mediana e área construída Grande e área extra Grande e localidade Boa
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Barato e vagas garagem Muita e área construída Grande e área extra Grande e localidade Boa
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorBarata.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Pouca e área construída Mediana e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Pouca e área construída Pequena e área extra Mediana e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Mediana
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Mediana e área construída Pequena e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Mediana e área construída Mediana e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Mediana e área construída Mediana e área extra Mediana e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Mediana e área construída Mediana e área extra Mediana e localidade Mediana
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Pouca e área construída Grande e área extra Pequena e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Pouca e área construída Pequena e área extra Grande e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Boa
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Mediana e área construída Grande e área extra Pequena e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Mediano e vagas garagem Mediana e área construída Grande e área extra Grande e localidade Ruim
+        // então Qualidade Boa
         valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
@@ -222,7 +403,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Mediano e vagas garagem Mediana e área construída Grande e área extra Grande e localidade Boa
+        // então Qualidade Boa
         valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
@@ -231,7 +413,8 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Mediano e vagas garagem Muita e área construída Grande e área extra Grande e localidade Boa
+        // então Qualidade Boa
         valores.add(fuzzy.trunc(valorMediana.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
@@ -240,7 +423,78 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
 
         valores.clear();
+        // se valor Caro e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
 
+        valores.clear();
+        // se valor Caro e vagas garagem Pouca e área construída Mediana e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Pouca e área construída Pequena e área extra Mediana e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Mediana
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localMediana.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Mediana e área construída Pequena e área extra Pequena e localidade Ruim
+        // então Qualidade Ruim
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_RUIM, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Mediana e área construída Mediana e área extra Pequena e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Mediana e área construída Mediana e área extra Mediana e localidade Ruim
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaMediana.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Mediana e área construída Mediana e área extra Mediana e localidade Mediana
+        // então Qualidade Boa
         valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaMediana.fuzzyfy(areaInterna)));
@@ -249,12 +503,73 @@ public class Imobiliaria {
         qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
 
         valores.clear();
-
+        // se valor Caro e vagas garagem Pouca e área construída Grande e área extra Pequena e localidade Ruim
+        // então Qualidade Boa
         valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
         valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
         valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
         valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
         valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Pouca e área construída Pequena e área extra Grande e localidade Ruim
+        // então Qualidade Boa
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Pouca e área construída Pequena e área extra Pequena e localidade Boa
+        // então Qualidade Mediana
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaPouca.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaPequena.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_MEDIA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Mediana e área construída Grande e área extra Pequena e localidade Ruim
+        // então Qualidade Boa
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaPequena.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Mediana e área construída Grande e área extra Grande e localidade Ruim
+        // então Qualidade Boa
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localRuim.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Mediana e área construída Grande e área extra Grande e localidade Boa
+        // então Qualidade Boa
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMediana.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
+        qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
+
+        valores.clear();
+        // se valor Caro e vagas garagem Muita e área construída Grande e área extra Grande e localidade Boa
+        // então Qualidade Boa
+        valores.add(fuzzy.trunc(valorCara.fuzzyfy(valor)));
+        valores.add(fuzzy.trunc(vagaMuita.fuzzyfy(vagas)));
+        valores.add(fuzzy.trunc(areaInternaGrande.fuzzyfy(areaInterna)));
+        valores.add(fuzzy.trunc(areaExternaGrande.fuzzyfy(areaExterna)));
+        valores.add(fuzzy.trunc(localBoa.fuzzyfy(localidade)));
         qualidade.add(_QUALIDADE_BOA, fuzzy.min(valores));
 
         return qualidade;
