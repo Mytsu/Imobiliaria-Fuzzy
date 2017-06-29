@@ -62,6 +62,3 @@ infraestrutura (calçamento, luz, água, esgoto).
     1. Ruim – até 3
     2. Mediana – de 2,5 até 6
     3. Boa – a partir de 5,2.
-
-### Erros
-Atualmente o sistema fuzzy está gerando valores pequenos devido a especificação rígida das regras dispostas, estamos codificando regras adicionais.
