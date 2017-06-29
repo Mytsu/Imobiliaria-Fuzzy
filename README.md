@@ -4,21 +4,21 @@
 ### Sobre
 Imobiliaria Fuzzy é um aplicativo capaz de realizar uma operação que calcula a porcentagem de qualidade de uma casa. 
 
-###Introdução
+### Introdução
 Este documento consiste na apresentação do trabalho prático feito para a disciplina Inteligência
 Artigicial, com o tema de qualificação de imóveis para imobiliárias. O programa foi feito
 especificamente para imóveis residenciais (casas) e o terreno também é tratato. Consiste em coletar
 os atributos do imóvel – sendo as variáveis: Valor, número de vagas na garagem, área construída,
 área extra (o que restou do terreno) e localidade.
 
-###Entrevista
+### Entrevista
 Foram feitas várias entrevistas com um profissional da área, um corretor de imóveis, para o auxílio
 na construção do programa, a fim de oferecer ajuda com as variáveis, com as regras – para que estas
 sejam incorporadas à lógica fuzzy, no qual foi o método utilizado para efetuar a medição da
 qualidade da casa – e, também, para uma explicação generalizada de como é este processo dentro de
 uma imobiliária, para ter-se esse conhecimento e aplicar ao programa.
 
-###Implementação
+### Implementação
 A implementação foi jeita na linguagem java e foram feitas classes implementandos os tipos de
 gráficos, utilizando as formas de trapézio, triângulo e linha; as classes de controle, que são as
 classes Casa e Imobiliaria, a primeira recebe todos os atributos que serão tratados pela fuzzy e a
