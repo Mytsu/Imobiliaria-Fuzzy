@@ -20,4 +20,22 @@
         }
         return m;
     }
+
+    max(l1: number, l2: number): number {
+        if (l1 > l2) {
+            return l1;
+        } else {
+            return l2;
+        }
+    }
+
+    maxList(l: Array<number>): number {
+        let m: number = 0;
+        for (var i in l) {
+            if (m < +i) {
+                m = +i;
+            }
+        }
+        return m;
+    }
 }
