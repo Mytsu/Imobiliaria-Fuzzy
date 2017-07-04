@@ -104,4 +104,18 @@
             return l;
         }
     }    
+
+    static truncList(l: Array<number>): Array<number> {
+        let resp: Array<number>;
+        for (let i = 0; i < l.length; i++) {
+            if ( l[i] > 1 ) {
+                resp.push(1);
+            } else if ( l[i] < 0 ) {
+                resp.push(0);
+            } else {
+                resp.push(l[i]);
+            }
+        }
+        return resp;
+    }
 }
