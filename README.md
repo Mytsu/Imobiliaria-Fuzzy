@@ -2,7 +2,7 @@
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
 ### Sobre
-Imobiliaria Fuzzy é um aplicativo capaz de realizar uma operação que calcula a porcentagem de qualidade de uma casa. 
+Imobiliaria Fuzzy é um aplicativo capaz de realizar uma operação que calcula a porcentagem de qualidade de uma casa para venda. 
 
 ### Introdução
 Este documento consiste na apresentação do trabalho prático feito para a disciplina Inteligência
